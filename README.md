@@ -15,7 +15,7 @@ Welcome to the Sudoku Solver, a web application designed to solve Sudoku puzzles
 
 
 <p align="center">
-  <img src="https://github.com/ayushichoudhary-19/SudokuSolver/assets/73214455/1686de45-c5c3-4f53-ad1d-6a57a86111db" alt="Image" width="600" height="auto">
+  <img src="https://github.com/initnegi/sudoku_solver_web_app/blob/main/Sudoku_web_app.jpg" alt="Image" width="600" height="auto">
 </p>
   
 
