@@ -1,44 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudoku Solver</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-</head>
-<body>
-    <div id="container">
-        <h1 class = "padd">Sudoku Solver</h1>
-        <table id="sudoku-board">
-          
-          <colgroup><col><col><col>
-          <colgroup><col><col><col>
-          <colgroup><col><col><col>
-          <tbody>
-           <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
-           <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>     
-           <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
-          <tbody>
-           <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
-           <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>     
-           <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
-          <tbody>
-           <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
-           <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>     
-           <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
-        </table>
-        <div class="btns">
-        <div>
-          <button id="solve-button">Solve</button>
-        </div>
-        <div>
-          <button id="clear-button">Clear board</button>
-        </div>
-    </div>
-      </div>
+<html>
+	<head>
+		<title>Sudoku</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata"/>
+		<link href="style.css" type="text/css" rel="stylesheet"/>
+    <script href="script.js"></script>
+	</head>
 
-    <script src="script.js"></script>
-</body>
+	<body>
+		<h1>Sudoku solver in HTML, CSS and Javascript</h1>
+    Uses recursion and backtracking.<p/>
+    <p/>
+    <div class="container">
+      <div class="box1">
+		<table id="table">
+			<colgroup><col/><col/><col/></colgroup>
+			<colgroup><col/><col/><col/></colgroup>
+			<colgroup><col/><col/><col/></colgroup>
+			<tbody>
+				<tr><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+				<tr><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+				<tr><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+			</tbody>
+			<tbody>
+				<tr><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+				<tr><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+				<tr><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+			</tbody>
+			<tbody>
+				<tr><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+				<tr><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+				<tr><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+			</tbody>
+		</table>
+		<label id="info"> </label>
+      </div>
+      <div class="box2">
+      	<button id="reset_btn">Reset grid</button><br/>
+		<button id="clear_btn">Clear grid</button><p/>
+		<button id="sample_btn_1">Load sample 1</button><br/>
+		<button id="sample_btn_2">Load sample 2</button><br/>
+		<button id="sample_btn_3">Load sample 3</button><br/>
+		<button id="sample_btn_4">Load sample 4</button><br/>
+		<button id="sample_btn_5">Load sample 5</button><br/>
+		<button id="sample_btn_6">Load sample 6</button><br/>
+		<button id="sample_btn_7">Load sample 7</button><p/>
+		<button id="solve_btn">Solve it</button>
+      </div>
+    </div>
+	</body>
+	<script type="text/javascript" src="script.js"></script>
 </html>

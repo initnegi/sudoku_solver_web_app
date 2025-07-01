@@ -1,247 +1,348 @@
-document
-  .getElementById("sudoku-board")
-  .addEventListener("keyup", function (event) {
-    if (event.target && event.target.nodeName == "TD") {
-      var validNum = /[1-9]/;
-      var tdEl = event.target;
-      if (tdEl.innerText.length > 0 && validNum.test(tdEl.innerText[0])) {
-        tdEl.innerText = tdEl.innerText[0];
-      } else {
-        tdEl.innerText = "";
-      }
-    }
-  });
+var zero_grid = [
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0]];
 
-document
-  .getElementById("solve-button")
-  .addEventListener("click", function (event) {
-    var boardString = boardToString();
-    var solution = SudokuSolver.solve(boardString);
-    if (solution) {
-      stringToBoard(solution);
-    } else {
-      alert("Invalid board!");
-    }
-  });
+var sample_grid_1 = [
+	[5,3,0,0,7,0,0,0,0],
+	[6,0,0,1,9,5,0,0,0],
+	[0,9,8,0,0,0,0,6,0],
+	[8,0,0,0,6,0,0,0,3],
+	[4,0,0,8,0,3,0,0,1],
+	[7,0,0,0,2,0,0,0,6],
+	[0,6,0,0,0,0,2,8,0],
+	[0,0,0,4,1,9,0,0,5],
+	[0,0,0,0,8,0,0,7,9]];
 
-document.getElementById("clear-button").addEventListener("click", clearBoard);
+var sample_grid_2 = [
+	[1,0,0,2,0,3,8,0,0],
+	[0,0,4,0,5,0,0,0,0],
+	[6,0,0,0,0,0,0,0,7],
+	[0,0,2,0,9,5,0,3,0],
+	[0,8,0,0,0,0,0,1,0],
+	[0,4,0,1,2,0,6,0,0],
+	[4,0,0,0,0,0,0,0,1],
+	[0,0,0,0,3,0,9,0,0],
+	[0,0,7,4,0,2,0,0,6]];
 
-function clearBoard() {
-  var tds = document.getElementsByTagName("td");
-  for (var i = 0; i < tds.length; i++) {
-    tds[i].innerText = "";
-  }
+var sample_grid_3 = [
+	[0,0,5,0,0,0,0,1,0],
+	[0,0,3,0,0,0,2,9,0],
+	[0,4,0,0,6,0,0,0,8],
+	[5,7,0,0,0,4,0,0,0],
+	[0,9,0,0,0,0,0,0,0],
+	[0,0,0,2,0,8,0,5,0],
+	[0,6,9,0,7,0,0,0,0],
+	[0,0,0,0,0,0,7,4,0],
+	[0,3,0,9,0,0,6,0,0]];
+
+var sample_grid_4 = [
+	[0,2,9,0,0,0,4,0,0],
+	[0,0,0,5,0,0,1,0,0],
+	[0,4,0,0,0,0,0,0,0],
+	[0,0,0,0,4,2,0,0,0],
+	[6,0,0,0,0,0,0,7,0],
+	[5,0,0,0,0,0,0,0,0],
+	[7,0,0,3,0,0,0,0,5],
+	[0,1,0,0,9,0,0,0,0],
+	[0,0,0,0,0,0,0,6,0]];
+
+var sample_grid_5 = [
+	[0,0,6,8,0,9,1,0,0],
+	[0,0,0,7,0,1,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[5,0,0,2,0,8,0,0,4],
+	[4,3,0,0,0,0,0,9,5],
+	[0,6,0,0,0,0,0,8,0],
+	[0,0,0,0,0,0,0,0,0],
+	[2,0,0,5,3,6,0,0,9],
+	[0,0,7,0,0,0,4,0,0]];
+
+var sample_grid_6 = [
+	[8,0,0,0,0,0,0,0,0],
+	[0,0,3,6,0,0,0,0,0],
+	[0,7,0,0,9,0,2,0,0],
+	[0,5,0,0,0,7,0,0,0],
+	[0,0,0,0,4,5,7,0,0],
+	[0,0,0,1,0,0,0,3,0],
+	[0,0,1,0,0,0,0,6,8],
+	[0,0,8,5,0,0,0,1,0],
+	[0,9,0,0,0,0,4,0,0]];
+
+var sample_grid_7 = [
+	[0,0,0,4,3,1,0,0,0],
+	[0,0,8,0,0,0,4,0,0],
+	[0,3,0,0,0,0,0,1,0],
+	[2,0,0,0,0,0,0,0,5],
+	[3,0,0,0,6,0,0,0,9],
+	[9,0,0,0,0,0,0,0,2],
+	[0,7,0,0,0,0,0,6,0],
+	[0,0,9,0,0,0,5,0,0],
+	[0,0,0,8,5,3,0,0,0]];
+
+	var sample_grid_8 = [[0,0,0,0,0,0,0,0,0],[0,7,0,5,0,9,0,4,0],[0,0,5,0,1,0,2,0,0],[0,9,0,0,0,0,0,5,0],[7,0,0,0,3,0,0,0,4],[0,6,0,0,0,0,0,3,0],[0,0,1,0,2,0,3,0,0],[0,8,0,6,0,4,0,9,0],[0,0,0,0,0,0,0,0,0]];
+
+var clue_grid = [
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0]];
+
+var solution_grid = [
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0]];
+
+var grid = [
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0]];
+
+var steps = 0;
+
+window.onload = function onLoad()
+{
+	grid_to_table(zero_grid);
 }
 
-function boardToString() {
-  var string = "";
-  var validNum = /[1-9]/;
-  var tds = document.getElementsByTagName("td");
-  for (var i = 0; i < tds.length; i++) {
-    if (validNum.test(tds[i].innerText[0])) {
-      string += tds[i].innerText;
-    } else {
-      string += "-";
-    }
-  }
-  return string;
+function onClickSolve()
+{
+	steps = 0;
+	table_to_grid();
+
+	// Quick check
+	var count = 0;
+	for(var i=0; i<9; i++)
+	{
+		for(var j=0; j<9; j++)
+		{
+			if(grid[i][j] != 0)
+				count++;
+		}
+	}
+
+	if(count < 17)
+		return;
+
+	copy_grid(grid, clue_grid);
+
+	console.log(grid_to_string(clue_grid));
+	
+	copy_grid(clue_grid, solution_grid);
+	var t0 = performance.now();
+	solve();
+	var t1 = performance.now();
+	//console.log(t1 - t0 + " ms");
+	document.getElementById("info").innerHTML = "Solved in " + steps.toLocaleString() + " step(s) and " + ((t1 - t0).toFixed(0)).toLocaleString() + " ms.";
+	grid_to_table(solution_grid);
 }
 
-function stringToBoard(string) {
-  var currentCell;
-  var validNum = /[1-9]/;
-  var cells = string.split("");
-  var tds = document.getElementsByTagName("td");
-  for (var i = 0; i < tds.length; i++) {
-    currentCell = cells.shift();
-    if (validNum.test(currentCell)) {
-      tds[i].innerText = currentCell;
-    }
-  }
+function onClickClear()
+{
+	document.getElementById("info").innerHTML = "";
+	grid_to_table(zero_grid);
 }
 
-("use strict");
+function onClickReset()
+{
+	document.getElementById("info").innerHTML = "";
+	grid_to_table(clue_grid);
+}
 
-var EASY_PUZZLE =
-  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
-var MEDIUM_PUZZLE =
-  "-3-5--8-45-42---1---8--9---79-8-61-3-----54---5------78-----7-2---7-46--61-3--5--";
-var HARD_PUZZLE =
-  "8----------36------7--9-2---5---7-------457-----1---3---1----68--85---1--9----4--";
+function onClickSample(id)
+{
+	document.getElementById("info").innerHTML = "";
+	var sample_grid = sample_btn_1;
+	switch(id)
+	{
+		case "sample_btn_1":
+			sample_grid = sample_grid_1;
+			break;
+		case "sample_btn_2":
+			sample_grid = sample_grid_2;
+			break;
+		case "sample_btn_3":
+			sample_grid = sample_grid_3;
+			break;
+		case "sample_btn_4":
+			sample_grid = sample_grid_4;
+			break;
+		case "sample_btn_5":
+			sample_grid = sample_grid_5;
+			break;
+		case "sample_btn_6":
+			sample_grid = sample_grid_6;
+			break;
+		case "sample_btn_7":
+			sample_grid = sample_grid_7;
+			break;
+	}
+	copy_grid(sample_grid, clue_grid);
+	grid_to_table(clue_grid);
+}
 
-var TESTABLE = true;
+function copy_grid(src, dest)
+{
+	for(var i=0; i<9; i++)
+	{
+		for(var j=0; j<9; j++)
+		{
+			dest[i][j] = src[i][j];
+		}
+	}
+}
 
-var SudokuSolver = (function (testable) {
-  var solver;
+function grid_to_string(grid)
+{
+	var str = "var sample_grid_ = [";
+	for(var i=0; i<9; i++)
+	{
+		str += "[";
+		for(var j=0; j<9; j++)
+		{
+			str += grid[i][j];
+			if(j < 8)
+				str += ",";
+		}
+		str += "]";
+		if(i < 8)
+				str += ",";
+	}
+	str += "];";
 
-  function solve(boardString) {
-    var boardArray = boardString.split("");
-    if (boardIsInvalid(boardArray)) {
-      return false;
-    }
-    return recursiveSolve(boardString);
-  }
+	return str;
+}
 
-  function solveAndPrint(boardString) {
-    var solvedBoard = solve(boardString);
-    console.log(toString(solvedBoard.split("")));
-    return solvedBoard;
-  }
+function grid_to_table(grid)
+{
+	var table = document.getElementById("table");
 
-  function recursiveSolve(boardString) {
-    var boardArray = boardString.split("");
-    if (boardIsSolved(boardArray)) {
-      return boardArray.join("");
-    }
-    var cellPossibilities = getNextCellAndPossibilities(boardArray);
-    var nextUnsolvedCellIndex = cellPossibilities.index;
-    var possibilities = cellPossibilities.choices;
-    for (var i = 0; i < possibilities.length; i++) {
-      boardArray[nextUnsolvedCellIndex] = possibilities[i];
-      var solvedBoard = recursiveSolve(boardArray.join(""));
-      if (solvedBoard) {
-        return solvedBoard;
-      }
-    }
-    return false;
-  }
+	for(var i=0; i<9; i++)
+	{
+		for(var j=0; j<9; j++)
+		{
+			var textBox = document.createElement('input');
+			textBox.type = "text";
+			textBox.id = "cell_" + j + "_" + i;
+			if(grid[i][j] != 0)
+			{
+				textBox.value = grid[i][j];
+			}
+			if(clue_grid[i][j] != 0 || grid[i][j] == 0)
+			{
+				textBox.className = "clue";
+			}
+			else
+			{
+				textBox.className = "solution";
+			}
+			table.rows[i].cells[j].innerHTML = null;
+			table.rows[i].cells[j].appendChild(textBox);
+		}
+	}
+}
 
-  function boardIsInvalid(boardArray) {
-    return !boardIsValid(boardArray);
-  }
+function table_to_grid()
+{
+	var table = document.getElementById("table");
 
-  function boardIsValid(boardArray) {
-    return (
-      allRowsValid(boardArray) &&
-      allColumnsValid(boardArray) &&
-      allBoxesValid(boardArray)
-    );
-  }
+	for(var i=0; i<9; i++)
+	{
+		for(var j=0; j<9; j++)
+		{
+			var textBox = document.getElementById("cell_" + j + "_" + i);
+			if(textBox.value.length == 0 || textBox.className == "solution")
+				grid[i][j] = 0;
+			else
+				grid[i][j] = parseInt(textBox.value);
+		}
+	}
+}
 
-  function boardIsSolved(boardArray) {
-    for (var i = 0; i < boardArray.length; i++) {
-      if (boardArray[i] === "-") {
-        return false;
-      }
-    }
-    return true;
-  }
+function possible(y, x, n)
+{
+	for(var i=0; i<9; i++)
+	{
+		if(grid[y][i] == n)
+			return false;
+	}
 
-  function getNextCellAndPossibilities(boardArray) {
-    for (var i = 0; i < boardArray.length; i++) {
-      if (boardArray[i] === "-") {
-        var existingValues = getAllIntersections(boardArray, i);
-        var choices = ["1", "2", "3", "4", "5", "6", "7", "8", "9"].filter(
-          function (num) {
-            return existingValues.indexOf(num) < 0;
-          }
-        );
-        return { index: i, choices: choices };
-      }
-    }
-  }
+	for(var i=0; i<9; i++)
+	{
+		if(grid[i][x] == n)
+			return false;
+	}
 
-  function getAllIntersections(boardArray, i) {
-    return getRow(boardArray, i)
-      .concat(getColumn(boardArray, i))
-      .concat(getBox(boardArray, i));
-  }
+	var x0 = Math.floor(x / 3) * 3;
+	var y0 = Math.floor(y / 3) * 3;
 
-  function allRowsValid(boardArray) {
-    return [0, 9, 18, 27, 36, 45, 54, 63, 72]
-      .map(function (i) {
-        return getRow(boardArray, i);
-      })
-      .reduce(function (validity, row) {
-        return collectionIsValid(row) && validity;
-      }, true);
-  }
+	for(var i=0; i<3; i++)
+	{
+		for(var j=0; j<3; j++)
+		{
+			if(grid[y0+i][x0+j] == n)
+				return false;
+		}
+	}
 
-  function getRow(boardArray, i) {
-    var startingEl = Math.floor(i / 9) * 9;
-    return boardArray.slice(startingEl, startingEl + 9);
-  }
+	return true;
+}
 
-  function allColumnsValid(boardArray) {
-    return [0, 1, 2, 3, 4, 5, 6, 7, 8]
-      .map(function (i) {
-        return getColumn(boardArray, i);
-      })
-      .reduce(function (validity, row) {
-        return collectionIsValid(row) && validity;
-      }, true);
-  }
+function solve()
+{
+	for(var y=0; y<9; y++)
+	{
+		for(var x=0; x<9; x++)
+		{
+			if(grid[y][x] == 0)
+			{
+				steps++;
+				for(var n=1; n<=9; n++)
+				{
+					if(possible(y, x, n))
+					{
+						grid[y][x] = n;
+						solve();
+						grid[y][x] = 0;
+					}
+				}
+				return;
+			}
+		}
+	}
+	copy_grid(grid, solution_grid);
+}
 
-  function getColumn(boardArray, i) {
-    var startingEl = Math.floor(i % 9);
-    return [0, 1, 2, 3, 4, 5, 6, 7, 8].map(function (num) {
-      return boardArray[startingEl + num * 9];
-    });
-  }
-
-  function allBoxesValid(boardArray) {
-    return [0, 3, 6, 27, 30, 33, 54, 57, 60]
-      .map(function (i) {
-        return getBox(boardArray, i);
-      })
-      .reduce(function (validity, row) {
-        return collectionIsValid(row) && validity;
-      }, true);
-  }
-
-  function getBox(boardArray, i) {
-    var boxCol = Math.floor(i / 3) % 3;
-    var boxRow = Math.floor(i / 27);
-    var startingIndex = boxCol * 3 + boxRow * 27;
-    return [0, 1, 2, 9, 10, 11, 18, 19, 20].map(function (num) {
-      return boardArray[startingIndex + num];
-    });
-  }
-
-  function collectionIsValid(collection) {
-    var numCounts = {};
-    for (var i = 0; i < collection.length; i++) {
-      if (collection[i] != "-") {
-        if (numCounts[collection[i]] === undefined) {
-          numCounts[collection[i]] = 1;
-        } else {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-
-  function toString(boardArray) {
-    return [0, 9, 18, 27, 36, 45, 54, 63, 72]
-      .map(function (i) {
-        return getRow(boardArray, i).join(" ");
-      })
-      .join("\n");
-  }
-
-  if (testable) {
-    solver = {
-      solve: solve,
-      solveAndPrint: solveAndPrint,
-      recursiveSolve: recursiveSolve,
-      boardIsInvalid: boardIsInvalid,
-      boardIsValid: boardIsValid,
-      boardIsSolved: boardIsSolved,
-      getNextCellAndPossibilities: getNextCellAndPossibilities,
-      getAllIntersections: getAllIntersections,
-      allRowsValid: allRowsValid,
-      getRow: getRow,
-      allColumnsValid: allColumnsValid,
-      getColumn: getColumn,
-      allBoxesValid: allBoxesValid,
-      getBox: getBox,
-      collectionIsValid: collectionIsValid,
-      toString: toString,
-    };
-  } else {
-    solver = { solve: solve, solveAndPrint: solveAndPrint };
-  }
-
-  return solver;
-})(TESTABLE);
+document.getElementById("reset_btn").addEventListener("click", onClickReset);
+document.getElementById("solve_btn").addEventListener("click", onClickSolve);
+document.getElementById("clear_btn").addEventListener("click", onClickClear);
+document.getElementById("sample_btn_1").addEventListener("click", function() {onClickSample(this.id);});
+document.getElementById("sample_btn_2").addEventListener("click", function() {onClickSample(this.id);});
+document.getElementById("sample_btn_3").addEventListener("click", function() {onClickSample(this.id);});
+document.getElementById("sample_btn_4").addEventListener("click", function() {onClickSample(this.id);});
+document.getElementById("sample_btn_5").addEventListener("click", function() {onClickSample(this.id);});
+document.getElementById("sample_btn_6").addEventListener("click", function() {onClickSample(this.id);});
+document.getElementById("sample_btn_7").addEventListener("click", function() {onClickSample(this.id);});

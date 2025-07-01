@@ -1,71 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
 body {
-    background-color: #f6cce5;
+  font-family: 'Inconsolata';
+  font-size: 18px;
 }
 
-#container {
+.container {
+  width: fit-content;
   text-align: center;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.padd {
-    font-size: 5.6rem;
-    font-family: 'Water Brush', cursive;
+.box1, .box2 {
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+  padding: 5px;
 }
 
 table {
   border-collapse: collapse;
-  font-size: 2em;
-  margin: 0 auto;
+  /*
+  display: inline-block;
+  */
+  float: left;
 }
 
-colgroup,
-tbody {
+colgroup, tbody {
   border: solid medium;
 }
 
 td {
   border: solid thin;
-  height: 1.4em;
-  width: 1.4em;
+  height: 2.5em;
+  width: 2.5em;
   text-align: center;
   padding: 0;
 }
 
-.btns{
-    display: flex;
-    text-align: center;
-    justify-content: center;
+input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: none;
+  text-align: center;
+  font-family: 'Inconsolata';
+  font-size: 30px;
 }
 
 button {
-  margin-top: 15px;
-  font-size: 1.5em;
-  background-color: #A288E3;
-  color: white;
-  margin-left: 5px;
-  border: #A288E3;
-  border-radius: 5px;
-  padding: 5px 10px;
+  font-family: 'Inconsolata';
+  font-size: 20px;
+  width: 150px;
+  margin-bottom: 5px;
 }
 
-button:hover{
-    color: #A288E3;
-    background-color: white;
-    outline: #A288E3;
-    transition: all 1s ease;
-    cursor: pointer;
+.clue {
+  font-weight: 800;
 }
 
-@media screen and (max-width: 460px) {
-    .padd {
-        font-size: 4.2rem;
-    }
-    
-    table {
-      font-size: 1.5em;
-    }
+.solution {
+  color: rgb(100,149,237);
+  font-weight: 100;
+}
 
-    button{
-        font-size: 1rem;
-    }
+.center {
+  margin-left: auto;
+  margin-right: auto;
 }
