@@ -3,12 +3,11 @@
 Welcome to the Sudoku Solver, a web application designed to solve Sudoku puzzles using the powerful Backtracking algorithm. This interactive tool is built with JavaScript, providing an intuitive way to solve Sudoku puzzles and gain insights into this classic number puzzle game.
 <br>
 
-### [Please give a ⭐ to this repo if you like my work :)]
 
 <br> 
 
 ## 🌐 Live Website Demo 
- 🔗 https://ayushichoudhary-19.github.io/SudokuSolver/
+ 🔗 https://initnegi.github.io/sudoku_solver_web_app/
 
 
 <p align="center">
@@ -38,13 +37,6 @@ Welcome to the Sudoku Solver, a web application designed to solve Sudoku puzzles
 
 
 ## 🛠️ Tech Stack
-<p align="center">
-  <img src="https://img.icons8.com/color/96/000000/html-5.png" alt="HTML" style="margin: 10px;">
-  <img src="https://img.icons8.com/color/96/000000/css3.png" alt="CSS" style="margin: 10px;">
-  <img src="https://img.icons8.com/color/96/000000/javascript.png" alt="JavaScript (JS)" style="margin: 10px;">
-  <img src="https://img.icons8.com/color/96/000000/visual-studio-code-2019.png" alt="VS Code" style="margin: 10px;">
-</p>
-
 - **JavaScript**: Utilized for the Backtracking algorithm and interactivity.
 - **HTML**: Used for structuring the web page.
 - **CSS**: Provides styling to create an appealing user interface.
@@ -74,10 +66,6 @@ A Sudoku puzzle is a number puzzle or logic game. The puzzle consists of a `9x9`
 
 The Sudoku Solver employs the Backtracking algorithm to find solutions efficiently. Backtracking is a recursive technique that explores potential solutions and backtracks when it encounters inconsistencies, ultimately leading to a valid solution or indicating that no solution exists. This algorithm is particularly well-suited for solving Sudoku puzzles, as it efficiently explores the puzzle space and ensures the validity of each move.
 
-
-# 📄 License
-
-This project is open source and available under the MIT License.
 
 ---
 
