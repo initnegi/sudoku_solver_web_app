@@ -54,9 +54,5 @@ A Sudoku puzzle is a number puzzle or logic game. The puzzle consists of a `9x9`
 
 The Sudoku Solver employs the Backtracking algorithm to find solutions efficiently. Backtracking is a recursive technique that explores potential solutions and backtracks when it encounters inconsistencies, ultimately leading to a valid solution or indicating that no solution exists. This algorithm is particularly well-suited for solving Sudoku puzzles, as it efficiently explores the puzzle space and ensures the validity of each move.
 
-
 ---
-
-**Note:** You are welcome to clone and customize this Sudoku Solver for your own projects. Explore the code and adapt it to your needs, or contribute to its development on [GitHub](https://github.com/initnegi/sudoku_solver_web_app).
-
 
