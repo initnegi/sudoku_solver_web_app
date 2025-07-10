@@ -24,16 +24,16 @@ Welcome to the Sudoku Solver, a web application designed to solve Sudoku puzzles
 </div>
 
 
-## 🛠️ Tech Stack
+##  Tech Stack
 - **JavaScript**: Utilized for the Backtracking algorithm and interactivity.
 - **HTML**: Used for structuring the web page.
 - **CSS**: Provides styling to create an appealing user interface.
 
 
-## 🤔 What's a Sudoku Puzzle?  
+##  What's a Sudoku Puzzle?  
 A Sudoku puzzle is a number puzzle or logic game. The puzzle consists of a `9x9` grid, divided into nine `3x3` subgrids, also known as "regions" or "boxes." The objective of Sudoku is to fill in the entire grid with numbers so that each row, each column, and each `3x3` subgrid contains all of the digits from `1 to 9`, with **no repetition of numbers in any of these regions**.
 
-## 📜 Basic Rules :
+##  Basic Rules :
 
 1. Each row must contain all the numbers from 1 to 9, with no repetition.
 
@@ -42,7 +42,7 @@ A Sudoku puzzle is a number puzzle or logic game. The puzzle consists of a `9x9`
 3. Each of the nine 3x3 subgrids must contain all the numbers from 1 to 9, with no repetition.
 
 
-## 📚 How to Use the Solver
+##  How to Use the Solver
 
 1. **Input Your Puzzle**: Enter the Sudoku puzzle by filling in the numbers in the grid. Use "0" or leave cells empty for unknown values.
 
@@ -50,7 +50,7 @@ A Sudoku puzzle is a number puzzle or logic game. The puzzle consists of a `9x9`
 
 3. **View the Solution**: The solver will utilize the Backtracking algorithm to find a solution. Once solved, the completed puzzle will be displayed.
 
-## 🧰 Solving with Backtracking
+##  Solving with Backtracking
 
 The Sudoku Solver employs the Backtracking algorithm to find solutions efficiently. Backtracking is a recursive technique that explores potential solutions and backtracks when it encounters inconsistencies, ultimately leading to a valid solution or indicating that no solution exists. This algorithm is particularly well-suited for solving Sudoku puzzles, as it efficiently explores the puzzle space and ensures the validity of each move.
 
