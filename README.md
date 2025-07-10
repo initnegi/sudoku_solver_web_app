@@ -1,4 +1,4 @@
-# 🧩 SudokuSolver
+#  SudokuSolver
 
 Welcome to the Sudoku Solver, a web application designed to solve Sudoku puzzles using the powerful Backtracking algorithm. This interactive tool is built with JavaScript, providing an intuitive way to solve Sudoku puzzles and gain insights into this classic number puzzle game.
 <br>
@@ -6,12 +6,12 @@ Welcome to the Sudoku Solver, a web application designed to solve Sudoku puzzles
 
 <br> 
 
-## 🌐 Live Demo 
+##  Live Demo 
  🔗 https://initnegi.github.io/sudoku_solver_web_app/
 
 
 
-## 🧩 Sudoku Puzzle
+##  Sudoku Puzzle
 
 
 <p align="center">
